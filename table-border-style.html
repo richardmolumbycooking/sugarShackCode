@@ -1,0 +1,83 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Table Borders</title>
+    <style>
+      table, th, td {
+        border-collapse: collapse;
+        border: 0px solid lightgray;
+        padding: 8px;
+      }
+      .highlighted-row td {
+        border-top: 2px solid blue;
+        border-bottom: 2px solid blue;
+        border-left: 2px solid blue;
+        border-right: 2px solid blue;
+        background-color: #e6f7ff; /* Light blue background for emphasis */
+      }
+    </style>
+    </head>
+    <body>
+
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice</td>
+          <td>30</td>
+          <td>New York</td>
+        </tr>
+        <tr id="row2">
+          <td>Bob</td>
+          <td>24</td>
+          <td>London</td>
+        </tr>
+        <tr>
+          <td>Charlie</td>
+          <td>35</td>
+          <td>Paris</td>
+        </tr>
+        <tr class="special-row">
+          <td>David</td>
+          <td>28</td>
+          <td>Berlin</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button onclick="highlightRowById('row2')">Highlight Row 2</button>
+    <button onclick="highlightRowByClass('special-row')">Highlight Special Row</button>
+    <button onclick="highlightRowByIndex(0)">Highlight First Row</button>
+
+    <script>
+      function highlightRowById(rowId) {
+        const row = document.getElementById(rowId);
+        if (row) {
+          row.classList.add('highlighted-row');
+        }
+      }
+
+      function highlightRowByClass(className) {
+        const rows = document.getElementsByClassName(className);
+        for (let i = 0; i < rows.length; i++) {
+          rows[i].classList.add('highlighted-row');
+        }
+      }
+
+      function highlightRowByIndex(index) {
+        const table = document.getElementById('myTable');
+        const rows = table.getElementsByTagName('tr');
+        if (rows[index + 1]) { // +1 to account for the header row
+          rows[index + 1].classList.add('highlighted-row');
+        }
+      }
+    </script>
+
+    </body>
+    </html>
