@@ -183,6 +183,16 @@ echo "<!--price-".$price."-quantity-|".$quantity."|-->\n";
 <?php
   }
 ?>
+        <tr id='spaces'>
+          <td colspan="6" style='text-align: center'>&nbsp;</td>
+        </tr>
+        <tr id='zenmo'>
+          <td>&nbsp;</td>
+          <!--td><img id='finalLogo' src="images/finalLogoSept2025.jpg"></td-->
+          <td><img id='venmo' src='images/venmo_qrcode.png' alt='Scan or click to make a payment'></td>
+	  <td><h2>Zelle</h2></td>
+          <td>&nbsp;</td>
+        </tr>
         <tr id='emailLine'>
           <td colspan="6" style="text-align: center;">Email us for questions at: <a href="mailto:SugarShackTreat@gmail.com">SugarShackTreat@gmail.com</a></td>
         </tr>
