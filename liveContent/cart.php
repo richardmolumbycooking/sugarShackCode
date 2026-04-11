@@ -188,9 +188,9 @@ echo "<!--price-".$price."-quantity-|".$quantity."|-->\n";
         </tr>
         <tr id='zenmo'>
           <td>&nbsp;</td>
-          <!--td><img id='finalLogo' src="images/finalLogoSept2025.jpg"></td-->
           <td><img id='venmo' src='images/venmo_qrcode.png' alt='Scan or click to make a payment'></td>
-	  <td><h2>Zelle</h2></td>
+          <td>&nbsp;</td>
+          <td><h2>We also accept Zelle & Paypal</h2></td>
           <td>&nbsp;</td>
         </tr>
         <tr id='emailLine'>
