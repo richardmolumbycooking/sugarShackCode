@@ -193,15 +193,25 @@ echo "<!--price-".$price."-quantity-|".$quantity."|-->\n";
           <td><h2>We also accept Zelle & Paypal</h2></td>
           <td>&nbsp;</td>
         </tr>
+        <tr id='spaces'>
+          <td colspan="6" style='text-align: center'>&nbsp;</td>
+        </tr>
         <tr id='emailLine'>
           <td colspan="6" style="text-align: center;">Email us for questions at: <a href="mailto:SugarShackTreat@gmail.com">SugarShackTreat@gmail.com</a></td>
         </tr>
-        <tr id='spacesAgain'>
+        <tr>
+          <td colspan="6" style="text-align: center;">These products are homemade and not subject to state inspection.</td>
+        </tr>
+	<tr id='spacesAgain'>
           <td colspan="6" style='text-align: center'>&nbsp;</td>
         </tr>
+<?php
+/*
         <tr id='logo'>
           <td colspan="6" style="text-align: center;"><img id='finalLogo' src="images/finalLogoSept2025.jpg"></td>
         </tr>
+*/
+?>
       </table>
       <script>
         const tableObj = document.getElementById('mainTable');

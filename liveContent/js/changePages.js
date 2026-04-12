@@ -16,3 +16,4 @@
 //          location.replace('details.php?itemName='  + item + '?payPalButtonId=' + buttonId + '?itemDesc=' + itemDesc + '?itemImage=' + imageSrc + '?unitPrice=' + unitPrice);
           location.replace('details.php?itemNbr=' + itemNbr + '&itemName='  + item + '&itemDesc=' + itemDesc + '&itemImage=' + imageSrc + '&unitPrice=' + unitPrice);
         }
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
