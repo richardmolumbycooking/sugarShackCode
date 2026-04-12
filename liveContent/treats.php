@@ -29,15 +29,16 @@
 
       <link rel="stylesheet" type="text/css" href="css/overlay.css">
       <script src=js/changePages.js></script>
-      <table id='mainTable'>
+      <table id='mainTable' border=1>
         <col style="width: 250px;">
         <col style="width: 250px;">
         <tr>
-          <td colspan="2" style="text-align: center;"><h2>Sugar Shack Treats</h2></td>
+          <td colspan="3" style="text-align: center;"><h2>Sugar Shack Treats</h2></td>
         </tr>
         <tr>
           <td id='tdHead20' style="text-align: center;"></td>
           <td id='tdHead21' style="text-align: center;"></td>
+          <td>&nbsp;</td>
         </tr>
         <tr>
 <?php
@@ -62,7 +63,7 @@
      if ($rowNbr == 2) { $head21=$itemName; }
 */
 ?>
-          <td style="text-align: center;">
+          <td colspan="3" style="text-align: center;">
             <a href="javascript:changePages('<?= $catId; ?>')" class='image-button-container'>
               <img id='image<?= $catId; ?>' src='images/<?= $imageName; ?>' alt='<?= $itemName ?>' class='button-image' width='200' height='200'>
               <div class="overlay">
@@ -82,6 +83,7 @@
         <tr>
           <td id='tdHead<?= $trRowNbr ?>0' style="text-align: center;"></td>
           <td id='tdHead<?= $trRowNbr ?>1' style="text-align: center;"></td>
+          <td id='tdHead<?= $trRowNbr ?>2' style="text-align: center;"></td>
         </tr>
         <tr>
 <?php
@@ -91,22 +93,49 @@
 ?>
         </tr>
         <tr>
-          <td style="text-align: center;">&nbsp;</td>
-          <td style="text-align: center;">&nbsp;</td>
+          <td colspan="3" style="text-align: center;">&nbsp;</td>
         </tr>
         <!--TR_EMPTY-->
         <tr>
-          <td colspan="2">&nbsp;</td>
+          <td style='text-align: left; vertical-align: top'>
+            <lable for='cakeSize'>Cake Size: </lable>
+            <select id='cakeSize' name='cakeSize' onchange='changeSize()'>
+            </select>
+          </td>
+          <td>
+            <lable for='cakeQty'>Qty: </label>
+            <input type='number' id='cakeQty' name='cakeQty' onchange='changeSize()'>
+          </td>
+          <td>
+            <lable for='cakePrice'>Price: </label>
+            <input type='text' id='cakePrice' name='cakePrice' readonly>
+          </td>
         </tr>
         <tr>
-          <td colspan="2" style="text-align: center;">Email us for questions at: <a href="mailto:SugarShackTreat@gmail.com">SugarShackTreat@gmail.com</a></td>
+          <td style='text-align: left; vertical-align: top'>
+            <lable for='partyType'>Type of Party: </lable>
+            <select id='partyType' name='partyType'>
+              <option selected value='0'>Choose an option</option>
+              <option value='1'>Kids Party</option>
+              <option value='1'>Employee Party</option>
+              <option value='1'>Retirement Party</option>
+              <option value='1'>House Party</option>
+              <option value='1'>Weddings</option>
+              <option value='1'>Custom Party</option>
+            </select>
+          </td>
         </tr>
         <tr>
-          <td colspan="2" style="text-align: center;"><img id='finalLogo' src="images/finalLogoSept2025.jpg"></td>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: center;">Email us for questions at: <a href="mailto:SugarShackTreat@gmail.com">SugarShackTreat@gmail.com</a></td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: center;"><img id='finalLogo' src="images/finalLogoSept2025.jpg"></td>
         </tr>
       </table>
       <script>
-        const tableObj = document.getElementById('mainTable');
         window.onload = function() {
 <?php
   $headLine=0;
@@ -118,6 +147,8 @@
     echo "          document.getElementById('".$id."').innerHTML = '".$value."';\n";
   }
 ?>
+          const cakeSizeObj = document.getElementById('cakeSize');	// Select
+          const tableObj = document.getElementById('mainTable');
           // Loop through all cell entries
           colToDelete = 99999;
           const rows = tableObj.querySelectorAll('tr');
@@ -137,7 +168,7 @@
                 cellText = cell.innerHTML;
                 if (cellId.substring(0,6) == 'tdHead') {
                    if (cellText == '') {
-                      console.log(`Row ${rowIndex} ID: ${row.id}  Cell ${cellIndex} ID: ${cell.id} cellText |${cellText}|`);
+//                    console.log(`Row ${rowIndex} ID: ${row.id}  Cell ${cellIndex} ID: ${cell.id} cellText |${cellText}|`);
                       colToDelete = cellIndex;
                    } // if (cellText == '')
                 } // if (cellId.substring(0,6) == 'tdHead')
@@ -172,6 +203,42 @@
                });
              });
           } // if (colToDelete < 99999)
+          // Build cakeSize select list
+          cakeSizeArray = ['Choose an option', '3 inch Round', '3 inch Square', 'Loaf Pan'];
+          cakePriceArray = [-1, 5, 5, 8];
+          for (cake=0; cake < cakeSizeArray.length; cake++) {
+            cakeItem = cakeSizeArray[cake];
+            priceItem = cakePriceArray[cake];
+            cakeSizeObj.options[cakeSizeObj.options.length] = new Option(cakeItem, cake);
+            console.log(`  cakeItem[${cake}] [${cakeItem}] priceValue[${priceItem}]`);
+          }
+        } // window.onload = function()
+        const cakePriceObj = document.getElementById('cakePrice');	// Text
+        const cakeSizeObj = document.getElementById('cakeSize');	// Select
+        const cakeQtyObj = document.getElementById('cakeQty');	// Text
+        function changeSize() {
+           //
+           priceAmt = 0;
+           sizeIdx = cakeSizeObj.selectedIndex;
+           sizeQty = cakeSizeObj[sizeIdx].value;
+           cakeQty  = cakeQtyObj.value;
+           priceVal = cakePriceArray[sizeIdx];
+           console.log(`sizeIdx [${sizeIdx}] sizeQty (${sizeQty}) cakeQty [${cakeQty}] priceVal [${priceVal}]`);
+           if ( (cakeQty > 0) && (sizeQty > 0) ) {
+//           alert('sizeQty ('+sizeQty+') priceVal ('+priceVal+')');
+             cakePriceObj.value = '$' + (cakeQty * priceVal) + '.00';
+           }
+        }
+        function changeQty() {
+           //
+           sizeIdx = cakeSizeObj.selectedIndex;
+           sizeQty = cakeSizeObj[sizeIdx];
+           cakeQty  = cakeQtyObj.value;
+//         console.log(`cakeIdx [${cakeIdx}] cakeQty [${cakeQty}]`);
+           console.log(`cakeQty [${cakeQty}]`);
+           var cakeSize = '';
+           var cakeQty = '';
+           var cakeQty = '';
         }
       </script>
 
